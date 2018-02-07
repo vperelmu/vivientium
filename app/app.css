@@ -1,0 +1,13 @@
+/* app css stylesheet */
+
+.navbar {
+	background-color: #563d7c; 
+	color: #cbbde2;
+}
+
+.container-fluid.list .nav, 
+.container-fluid.list .list-group,
+.container-fluid.list .accordion {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}

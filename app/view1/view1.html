@@ -1,0 +1,18 @@
+<div class="container-fluid list">
+	
+	<ul class="nav nav-pills justify-content-center">
+		<li class="nav-item">
+			<span ng-class="isActive('All')" ng-click="setActiveTag('All')">All</span>
+		</li>
+		<li class="nav-item" ng-repeat="tag in tags">
+			<span ng-class="isActive(tag)" ng-click="setActiveTag(tag)">{{ tag }}</span>
+		</li>
+	</ul>
+
+	<ul class="list-group">
+  		<li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="item in data">
+  			<a href="#!/issue/{{ item.id }}"> #{{ item.id }} {{ item.title }} </a> 
+  			<span ng-repeat="tag in item.tags" ng-class="getTagClass(tag)" ng-click="setActiveTag(tag)">{{ tag }}</span>
+  		</li>
+	</ul>
+</div>

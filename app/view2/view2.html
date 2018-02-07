@@ -1,0 +1,105 @@
+<div class="container-fluid list">
+	<div id="accordion" class="accordion">
+		<div class="card">
+			<div class="card-header" id="headingOne">
+				<div class="row">
+					<div class="col-8">
+						<h5>
+							<button class="btn btn-link">
+								{{ data.id }} {{ data.title }}
+							</button>
+						</h5>	
+					</div>
+					<div class="col-4">
+						<span ng-class="getTagClassFloat(data.tags[0])">{{ data.tags[0] }}</span>	
+					</div>
+				</div>
+			</div>
+
+			<div id="collapseOne">
+				<div class="card-body">
+					<div class="row" ng-show="!isEditingText">
+						<div class="col-8" ng-bind-html="data.text | trust"></div>
+						<div class="col-4">
+							<button 
+								type="submit" 
+								class="btn btn-primary float-right" 
+								ng-click="editIssue()">Edit
+							</button>
+						</div>
+					</div>
+
+					<div class="row" ng-show="isEditingText">
+						<div class="col-8">
+							<input type="email" class="form-control" my-directive="data.text" />
+						</div>
+						
+						<div class="col-4">
+							<button 
+								type="submit" 
+								class="btn btn-primary float-right" 
+								ng-click="saveIssueChanges()">Save
+							</button>
+							<button 
+								type="submit" 
+								class="btn btn-danger float-right" 
+								ng-click="cancelEditIssue()">Cancel
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="accordion"  class="accordion" ng-repeat="comment in data.comments">
+	  <div class="card">
+	    <div class="card-header" id="headingOne">
+	      <h5 class="mb-0">
+	        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	          {{ $index + 1 }} Comment
+	        </button>
+	      </h5>
+	    </div>
+
+	    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+	      <div class="card-body" ng-bind-html="comment | trust">
+	       {{ comment }}
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="accordion" class="accordion">
+		<div class="card">
+			<div class="card-header">
+				<h5 class="mb-0">
+	        		<button class="btn btn-link">Add Comment</button>
+				</h5>
+			</div>
+
+			<div class="collapse show">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-8">
+							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ng-model="newComment"></textarea>
+						</div>
+						
+						<div class="col-4">
+							<button 
+								type="submit" 
+								class="btn btn-primary float-right" 
+								ng-click="addComment()">Save
+							</button>
+						</div>
+
+						<div class="col-8">
+							<small>HTML is fully supported</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
